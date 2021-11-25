@@ -1,0 +1,38 @@
+body {
+   background: black url("../img/bg.jpg") no-repeat;
+   background-size: 100%;
+   font-family: Orbitron;
+}
+
+.header {
+   color: white;
+   font-size: 85px;
+   text-align: center;
+   margin-bottom: 300px;
+   text-shadow: rgba(97, 119, 173, 0.9) 0px 0px 5px;
+}
+
+.keys {
+   display: flex;
+   justify-content: center;
+}
+
+.keys__item {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin: 0 20px 0;
+   width: 80px;
+   height: 80px;
+   border: white 4px solid;
+   border-radius: 15%;
+   box-shadow: white 0px 0px 10px;
+   color: white;
+   font-size: 30px;
+   background-color: rgba(0, 0, 0, 0.6);
+}
+
+.keys__item span {
+   font-size: 15px;
+}
