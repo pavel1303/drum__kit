@@ -9,33 +9,50 @@
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;900&display=swap" rel="stylesheet">
    <link rel="stylesheet" href="css/main.css">
-   <title>Drum-Kit</title>
+   <title>Java Script Drum Kit</title>
 </head>
 
 <body>
-   <h1 class="header">Drum Kit Machine</h1>
+   <h1 class="header">Java Script Drum Kit</h1>
    <div class="keys">
-      <div class="keys__item">A <span>Clap</span></div>
-      <div class="keys__item">S<span>Hihat</span></div>
-      <div class="keys__item">D<span>Kick</span></div>
-      <div class="keys__item">F<span>Openhat</span></div>
-      <div class="keys__item">G<span>Boom</span></div>
-      <div class="keys__item">H<span>Ride</span></div>
-      <div class="keys__item">J<span>Snare</span></div>
-      <div class="keys__item">K<span>Tom</span></div>
-      <div class="keys__item">L<span>Tink</span></div>
+      <div data-key="65" class="keys__item">A <span>Clap</span></div>
+      <div data-key="83" class="keys__item">S<span>Hihat</span></div>
+      <div data-key="68" class="keys__item">D<span>Kick</span></div>
+      <div data-key="70" class="keys__item">F<span>Openhat</span></div>
+      <div data-key="71" class="keys__item">G<span>Boom</span></div>
+      <div data-key="72" class="keys__item">H<span>Ride</span></div>
+      <div data-key="74" class="keys__item">J<span>Snare</span></div>
+      <div data-key="75" class="keys__item">K<span>Tom</span></div>
+      <div data-key="76" class="keys__item">L<span>Tink</span></div>
    </div>
 
-   <audio src="audio/Clap.mp3"></audio>
-   <audio src="audio/HiHat.ogg"></audio>
-   <audio src="audio/Kick.ogg"></audio>
-   <audio src="audio/openhat.mp3"></audio>
-   <audio src="audio/bum.mp3"></audio>
-   <audio src="audio/Ride.ogg"></audio>
-   <audio src="audio/Snare.mp3"></audio>
-   <audio src="audio/tom.ogg"></audio>
-   <audio src="audio/tink.ogg"></audio>
+   <audio data-key="65" src="audio/clap.mp3"></audio>
+   <audio data-key="83" src="audio/hihat.mp3"></audio>
+   <audio data-key="68" src="audio/kick.mp3"></audio>
+   <audio data-key="70" src="audio/openhat.mp3"></audio>
+   <audio data-key="71" src="audio/bum.mp3"></audio>
+   <audio data-key="72" src="audio/ride.mp3"></audio>
+   <audio data-key="74" src="audio/snare.mp3"></audio>
+   <audio data-key="75" src="audio/tom.ogg"></audio>
+   <audio data-key="76" src="audio/tink.ogg"></audio>
+   <script>
+      function playsound(e) {
+         const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // перерменная хранящяя аудио элемент с кодом кнопки
+         const key = document.querySelector(`.keys__item[data-key="${e.keyCode}"]`); // перерменная хранящяя div элемент с кодом кнопки
+         if (!audio) return; //останавливает выполнение функции если нет аудио элемента на кнопке
+         audio.currentTime = 0; // при повторном нажатии воспроизведение начинается с 0
+         audio.play(); //воспроизводит аудио
+         key.classList.add('playing');
+      }
 
+      function removeTransition(e) {                //функция удаляющая доп.класс после трансформации
+         if (e.propertyName !== 'transform') return;
+         this.classList.remove('playing');
+      };
+      window.addEventListener('keydown', playsound); // слушатель событий на нажатие клавиши
+      const keys = document.querySelectorAll('.keys__item'); // массив элементов с трансформацией
+      keys.forEach(key => key.addEventListener('transitionend', removeTransition)); // перебор массива для удаления трансформации
+   </script>
 </body>
 
 </html>

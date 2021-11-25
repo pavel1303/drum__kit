@@ -31,8 +31,15 @@ body {
    color: white;
    font-size: 30px;
    background-color: rgba(0, 0, 0, 0.6);
+   transition: all 0.07s;
 }
 
 .keys__item span {
    font-size: 15px;
+}
+
+.playing {
+   transform: scale(1.1);
+   border: rgb(124, 224, 240) 4px solid;
+   box-shadow: rgb(124, 224, 240) 0px 0px 10px;
 }
